@@ -18,7 +18,7 @@ def conectar_planilha():
     gc = gspread.service_account_from_dict(cred_dict)
     
     # 3. Cole aqui a URL completa da sua planilha (aquela que fica no navegador)
-    url_planilha = "COLE_AQUI_A_URL_DA_SUA_PLANILHA"
+    url_planilha = "https://docs.google.com/spreadsheets/d/13MDIaYXIvX_nUBZ8jvarpqkFxbn4WLUOBvqd-4MZRHY/edit?hl=pt-br&gid=0#gid=0"
     
     # Abre via URL (muito mais seguro) e seleciona a aba "Respostas"
     return gc.open_by_url(url_planilha).worksheet("Respostas")
