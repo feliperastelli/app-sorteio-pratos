@@ -1,6 +1,5 @@
 import streamlit as st
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 import random
 
@@ -12,16 +11,17 @@ MAX_DOCES = 90
 
 @st.cache_resource(ttl=600)
 def conectar_planilha():
-    cred_dict = st.secrets["gcp_service_account"]
-    scopes = [
-        "https://spreadsheets.google.com/feeds", 
-        "https://www.googleapis.com/auth/drive"
-    ]
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(cred_dict, scopes)
-    client = gspread.authorize(creds)
+    # 1. Converte o secret do Streamlit para um dicionário Python normal
+    cred_dict = dict(st.secrets["gcp_service_account"])
     
-    # Lembre-se de colocar o nome exato da sua planilha aqui
-    return client.open("Nome_Da_Sua_Planilha").worksheet("Respostas")
+    # 2. Usa a função moderna e nativa do gspread para autenticar
+    gc = gspread.service_account_from_dict(cred_dict)
+    
+    # 3. Cole aqui a URL completa da sua planilha (aquela que fica no navegador)
+    url_planilha = "COLE_AQUI_A_URL_DA_SUA_PLANILHA"
+    
+    # Abre via URL (muito mais seguro) e seleciona a aba "Respostas"
+    return gc.open_by_url(url_planilha).worksheet("Respostas")
 
 def main():
     st.title("Confirmação de Presença 🍽️")
