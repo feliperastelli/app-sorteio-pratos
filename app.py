@@ -93,7 +93,7 @@ def main():
     vagas_ocupadas = sum(contagem.values())
 
     if vagas_ocupadas >= TOTAL_VAGAS:
-        st.warning("Todas as 200 inscrições já foram preenchidas! Nos vemos no evento.")
+        st.warning("Todas as inscrições já foram preenchidas! Procure a liderança do evento para mais informações.")
         return
 
     # 5. Fluxo Mobile-First para o Pagamento
@@ -160,7 +160,7 @@ def main():
         ]
 
         if not categorias_disponiveis:
-            st.error("Desculpe, ocorreu um erro na distribuição das vagas.")
+            st.warning("Desculpe, todas as inscrições já foram preenchidas! Procure a liderança do evento para mais informações.")
             return
 
         categoria_definida = random.choice(categorias_disponiveis)
