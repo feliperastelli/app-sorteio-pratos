@@ -98,7 +98,7 @@ def main():
 
     # 5. Fluxo Mobile-First para o Pagamento
     st.markdown("---")
-    st.markdown("<h4 style='color: #8E163B;'>💰 Pagamento da Inscrição</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='color: #8E163B;'>Pagamento da Inscrição</h4>", unsafe_allow_html=True)
     st.write("**Valor:** R$ 20,00")
     
     st.write("Para pagar usando este celular, copie o código PIX abaixo e cole no aplicativo do seu banco:")
@@ -192,10 +192,14 @@ def exibir_resultado(categoria: str, whatsapp: str):
     st.warning("📸 **Tire um print desta tela** agora para guardar a informação do item que você deverá levar!")
 
     # Botão de envio do comprovante com margem superior maior (margin-top: 50px)
+
+    # numero do WhatsApp vindo dos secrets formatado para apresentação em tela - sem o 55 - (xx) xxxxx-xxxx
+    whatsapp_formatado = f"({whatsapp[2:4]}) {whatsapp[4:9]}-{whatsapp[9:]}" if len(whatsapp) == 13 else whatsapp
+
     st.markdown(
         f"""
         <div style="margin-top: 50px; margin-bottom: 20px;">
-            <p style="text-align: center; font-weight: bold; color: #333; font-size: 1.1rem;">Para concluir, envie o comprovante de pagamento clicando no botão abaixo:</p>
+            <p style="text-align: center; font-weight: bold; color: #333; font-size: 1.1rem;">Para concluir, envie o comprovante de pagamento clicando no botão abaixo ou para o número {whatsapp_formatado}:</p>
             <a href="https://wa.me/{whatsapp}" target="_blank" style="text-decoration: none;">
                 <div style="background-color: #25D366; color: white; text-align: center; padding: 14px; border-radius: 8px; font-weight: bold; width: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                     📲 Enviar Comprovante no WhatsApp
