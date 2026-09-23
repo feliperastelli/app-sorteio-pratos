@@ -39,10 +39,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 LIMITES_PRATOS = {
-    "Salgados fritos": 50,
-    "Pasteizinhos": 50,
-    "Salgados assados": 50,
-    "Pãezinhos recheados": 50
+    "Salgados fritos": 45,
+    "Pasteizinhos": 45,
+    "Salgados assados": 45,
+    "Pãezinhos recheados": 45
 }
 TOTAL_VAGAS = sum(LIMITES_PRATOS.values())
 
